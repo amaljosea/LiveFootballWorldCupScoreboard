@@ -29,4 +29,28 @@ describe("LiveFootballWorldCupScoreboard", () => {
     scoreboard.finishMatch(match1);
     expect(scoreboard.matches.size).toBe(1);
   });
+
+  it("should give match summary", () => {
+    const match1 = scoreboard.startMatch("Mexico", "Canada");
+    const match2 = scoreboard.startMatch("Spain", "Brazil");
+    const match3 = scoreboard.startMatch("Germany", "France");
+    const match4 = scoreboard.startMatch("Uruguay", "Italy");
+    const match5 = scoreboard.startMatch("Argentina", "Australia");
+
+    match1.updateScore(0, 5);
+    match2.updateScore(10, 2);
+    match3.updateScore(2, 2);
+    match4.updateScore(6, 6);
+    match5.updateScore(3, 1);
+
+    const summary = scoreboard.getSummary();
+
+    expect(summary).toStrictEqual([
+      "Uruguay 6 - 6 Italy",
+      "Spain 10 - 2 Brazil",
+      "Mexico 0 - 5 Canada",
+      "Argentina 3 - 1 Australia",
+      "Germany 2 - 2 France",
+    ]);
+  });
 });

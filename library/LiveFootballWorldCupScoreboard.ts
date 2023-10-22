@@ -41,6 +41,27 @@ class LiveFootballWorldCupScoreboard {
       throw new Error("Match not found.");
     }
   }
+
+  getSummary() {
+    const sortedMatches = [...this.matches.entries()].reverse().sort((a, b) => {
+      const totalScoreA = a[1].homeScore + a[1].awayScore;
+      const totalScoreB = b[1].homeScore + b[1].awayScore;
+
+      if (totalScoreA !== totalScoreB) {
+        return totalScoreB - totalScoreA;
+      }
+
+      // Sort by the order of matches (the order they were started)
+      return 0; // No need for a specific order here
+    });
+
+    const summary = sortedMatches.map(
+      ([_matchId, match]) =>
+        `${match.homeTeam} ${match.homeScore} - ${match.awayScore} ${match.awayTeam}`
+    );
+
+    return summary;
+  }
 }
 
 module.exports = { LiveFootballWorldCupScoreboard };
