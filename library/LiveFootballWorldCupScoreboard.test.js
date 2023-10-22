@@ -10,6 +10,9 @@ describe("LiveFootballWorldCupScoreboard", () => {
   it("should start a match", () => {
     const match1 = scoreboard.startMatch("Mexico", "Canada");
     expect(match1.homeTeam).toEqual("Mexico");
+    expect(match1.awayTeam).toEqual("Canada");
+    expect(match1.homeScore).toEqual(0);
+    expect(match1.awayScore).toEqual(0);
   });
 
   it("should update the score of a match", () => {
