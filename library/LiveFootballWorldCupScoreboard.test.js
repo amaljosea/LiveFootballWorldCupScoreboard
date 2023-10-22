@@ -21,4 +21,12 @@ describe("LiveFootballWorldCupScoreboard", () => {
     expect(match1.homeScore).toBe(2);
     expect(match1.awayScore).toBe(1);
   });
+
+  it("should finish a match", () => {
+    const match1 = scoreboard.startMatch("Mexico", "Canada");
+    scoreboard.startMatch("Spain", "Portugal");
+    expect(scoreboard.matches.size).toBe(2);
+    scoreboard.finishMatch(match1);
+    expect(scoreboard.matches.size).toBe(1);
+  });
 });

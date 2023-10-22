@@ -33,6 +33,14 @@ class LiveFootballWorldCupScoreboard {
     this.matches.set(match.id, match);
     return match;
   }
+
+  finishMatch(match: Match) {
+    if (this.matches.has(match.id)) {
+      this.matches.delete(match.id);
+    } else {
+      throw new Error("Match not found.");
+    }
+  }
 }
 
 module.exports = { LiveFootballWorldCupScoreboard };
